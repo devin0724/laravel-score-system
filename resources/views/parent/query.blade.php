@@ -20,7 +20,7 @@
                 <h2 class="form-title">输入查询链接</h2>
                 <p style="text-align: center; color: #6b7280; margin-bottom: 20px;">请输入老师分享的考试查询链接</p>
 
-                <form method="GET">
+                <form onsubmit="event.preventDefault(); submitCode();">
                     <div class="form-group">
                         <label for="code">查询码</label>
                         <input type="text" id="code" name="code" placeholder="请输入查询码" required>
@@ -31,6 +31,14 @@
 
                     <button type="submit" class="btn btn-primary">进入查询</button>
                 </form>
+                <script>
+                    function submitCode() {
+                        const code = document.getElementById('code').value.trim();
+                        if (code) {
+                            window.location.href = '/parent/' + encodeURIComponent(code);
+                        }
+                    }
+                </script>
             </div>
         @elseif(!$exam)
             <div class="form-container">
